@@ -1,12 +1,11 @@
 ---
-title: test
-description: test.
+title: Test Tabs
+description: Testing tabs rendering
 ---
 
-import { Card, Button } from "@dxdns/svelte-components"
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-## Card
-<Card>test</Card>
-
-## Button
-<Button>test</Button>
+<Tabs>
+  <TabItem label="Stars">Sirius, Vega, Betelgeuse</TabItem>
+  <TabItem label="Moons">Io, Europa, Ganymede</TabItem>
+</Tabs>

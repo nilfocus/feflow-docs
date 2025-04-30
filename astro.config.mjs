@@ -29,6 +29,14 @@ export default defineConfig({
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
+        {
+          label: "Components",
+          items: [
+            { label: "Accordion", slug: "components/accordion" },
+            { label: "Button", slug: "components/button" },
+            { label: "Card", slug: "components/card" },
+          ],
+        },
       ],
     }),
     svelte(),
