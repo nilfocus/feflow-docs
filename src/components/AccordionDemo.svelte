@@ -1,18 +1,9 @@
 <script lang="ts">
-  import { Accordion } from "@dxdns/svelte-components";
+  import { Accordion } from "@dxdns/feflow";
 
   let { variant } = $props();
-
-  let isOpen = $state(false);
 </script>
 
-<Accordion
-  {variant}
-  onclick={() => {
-    isOpen = !isOpen;
-  }}
-  label="test"
-  open={isOpen}
->
+<Accordion {variant} label="test">
   <span>test</span>
 </Accordion>

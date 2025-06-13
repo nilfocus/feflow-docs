@@ -2,7 +2,7 @@
 title: Card
 description: A flexible container component for grouping content
 ---
-import { Card } from "@dxdns/svelte-components"
+import { Card } from "@dxdns/feflow"
 import { Tabs, TabItem } from '@astrojs/starlight/components'
 
 A flexible container component used to group related content with optional styling and padding.
@@ -11,14 +11,14 @@ A flexible container component used to group related content with optional styli
 
 <Tabs>
   <TabItem label="Demo">
-    <Card>
+    <Card variant="contained">
       <h2>test card</h2>
     </Card>
   </TabItem>
   <TabItem label="Code">
     ```svelte
     <script lang="ts">
-      import { Card } from "@dxdns/svelte-components"
+      import { Card } from "@dxdns/feflow"
     </script>
 
     <Card>

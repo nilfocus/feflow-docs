@@ -8,21 +8,29 @@ import svelte from "@astrojs/svelte";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "Svelte Components",
+      title: "feflow",
+      components: {
+        ThemeProvider: "./src/layouts/RootLayout.astro",
+      },
+      favicon: "./src/assets/favicon.png",
+      logo: {
+        src: "./src/assets/logo.png",
+        replacesTitle: true,
+      },
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/dxdns/svelte-components",
+          href: "https://github.com/dxdns/feflow",
         },
       ],
       sidebar: [
         {
-          label: "Guides",
+          label: "Docs",
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-            { label: "test", slug: "guides/test" },
+            // { label: "Example Guide", slug: "docs" },
+            // { label: "test", slug: "docs/example" },
           ],
         },
         {

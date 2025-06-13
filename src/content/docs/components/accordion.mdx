@@ -11,26 +11,18 @@ A collapsible accordion component that supports dynamic state and different vari
 
 <Tabs>
   <TabItem label="Demo">
-    <br />
-<AccordionDemo client:load />
-<br />
-<AccordionDemo client:load variant="text" />
-  </TabItem>
+  <AccordionDemo id="test1" variant="outlined" client:load />
+</TabItem>
   <TabItem label="Code">
     ```svelte
       <script lang="ts">
-        import { Accordion } from "@/lib/index.js"
-        
-        let isOpen = $state(false)
+        import { Accordion } from "@dxdns/feflow"
       </script>
 
       <Accordion
-        onclick={() => {
-          isOpen = !isOpen
-        }}
+        id="test1"
         variant="text"
-        label="test"
-        {isOpen}
+        label="test1"
       >
         <span>test</span>
       </Accordion>
