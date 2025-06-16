@@ -10,8 +10,9 @@ export default defineConfig({
     starlight({
       title: "feflow",
       components: {
-        ThemeProvider: "./src/layouts/RootLayout.astro",
+        PageFrame: "./src/lib/layouts/RootLayout.astro",
       },
+      customCss: ["./src/styles/custom.css"],
       favicon: "./src/assets/favicon.png",
       logo: {
         src: "./src/assets/logo.png",
@@ -25,14 +26,6 @@ export default defineConfig({
         },
       ],
       sidebar: [
-        {
-          label: "Docs",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            // { label: "Example Guide", slug: "docs" },
-            // { label: "test", slug: "docs/example" },
-          ],
-        },
         {
           label: "Reference",
           autogenerate: { directory: "reference" },
