@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
+import path from 'node:path';
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
@@ -27,19 +27,22 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Getting Started",
+          autogenerate: { directory: "docs/getting-started" },
         },
         {
           label: "Components",
-          items: [
-            { label: "Accordion", slug: "components/accordion" },
-            { label: "Button", slug: "components/button" },
-            { label: "Card", slug: "components/card" },
-          ],
+          autogenerate: { directory: "docs/components" },
         },
       ],
     }),
     svelte(),
   ],
+  vite: {
+    resolve: {
+      alias: {
+        '@': path.resolve('./src/lib'),
+      }
+    }
+  }
 });

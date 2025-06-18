@@ -1,4 +1,5 @@
 :root {
     --sl-color-bg-sidebar: var(--ff-color-surface);
     --sl-color-bg-nav: var(--ff-color-surface);
+    --sl-color-text-accent: var(--ff-color-primary);
 }
