@@ -1,0 +1,32 @@
+---
+title: Autocomplete
+description: An input component that provides real-time suggestions as you type, with support for dynamic data, multiple variants, and customizable behavior.
+---
+import AutocompletePreview from '@/components/AutocompletePreview.svelte';
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+<Tabs>
+  <TabItem label="Preview">
+  <AutocompletePreview client:load />
+</TabItem>
+  <TabItem label="Usage">
+    ```svelte
+    <script lang="ts">
+        import { Autocomplete } from "@dxdns/feflow"
+
+        const data = Array.from(Array(30)).map((_, i) => ({
+            id: i,
+            label: `Item ${i}`
+        }))
+    </script>
+
+    <Autocomplete variant="search" {data} filter={(item) => `${item.label}`}>
+        {#snippet renderInput({ id, label })}
+            <a href="/{id}">
+                {label}
+            </a>
+        {/snippet}
+    </Autocomplete>
+      ```
+  </TabItem>
+</Tabs>
