@@ -1,0 +1,26 @@
+---
+title: Date Input
+description: A form input component that allows users to select or enter a date.
+---
+import DateInputPreview from "@/components/DateInputPreview.svelte"
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+<Tabs>
+  <TabItem label="Preview">
+    <DateInputPreview client:only />
+  </TabItem>
+  <TabItem label="Usage">
+    ```svelte
+    <script lang="ts">
+        import { DataTable } from "@dxdns/feflow"
+
+        const data = Array.from(Array(10)).map((_, index) => ({
+            id: index,
+            label: `test-${index}`
+        }))
+    </script>
+
+    <DataTable {data} />
+    ```
+  </TabItem>
+</Tabs>
