@@ -3,3 +3,7 @@
     --sl-color-bg-nav: var(--ff-color-surface);
     --sl-color-text-accent: var(--ff-color-primary);
 }
+
+.main-pane {
+    isolation: unset;
+}
