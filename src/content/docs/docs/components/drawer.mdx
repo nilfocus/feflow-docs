@@ -1,0 +1,162 @@
+---
+title: Drawer
+description: A UI component that slides in from the edge of the screen to display additional content or options without navigating away from the current view.
+---
+import DrawerPreview from "@/components/DrawerPreview.svelte"
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+<Tabs>
+  <TabItem label="Preview">
+    <DrawerPreview client:load />
+  </TabItem>
+  <TabItem label="Usage">
+    ```svelte
+    <script lang="ts">
+        import { Button, Drawer, Navbar, Window } from "@dxdns/feflow"
+
+        type PositionType = "top" | "left" | "right" | "bottom"
+
+        let drawerStates = $state({
+            top: false,
+            left: false,
+            right: false,
+            bottom: false
+        })
+
+        let isOpen = $state(false)
+
+        let isOpenFixed = $state(false)
+
+        function handleToggle(position: PositionType) {
+            drawerStates[position] = !drawerStates[position]
+        }
+
+        function handleClose(position: PositionType) {
+            drawerStates[position] = false
+        }
+    </script>
+
+    {#snippet header()}
+        <Drawer.Header>
+            {#snippet content()}
+                <span>logo</span>
+            {/snippet}
+        </Drawer.Header>
+    {/snippet}
+
+    {#snippet content()}
+        <a href="/">label</a>
+    {/snippet}
+
+    <Drawer
+        isOpen={isOpenFixed}
+        position="right"
+        handleClose={() => {
+            isOpenFixed = false
+        }}
+        {header}
+    >
+        {@render content()}
+    </Drawer>
+    <Button
+        onclick={() => {
+            isOpenFixed = !isOpenFixed
+        }}
+    >
+        Right Fixed
+    </Button>
+
+    <Window style="height: 500px; width: 500px; position: relative;">
+        <Drawer
+            isOpen={drawerStates.top}
+            position="top"
+            style="position: absolute;"
+            handleClose={() => handleClose("top")}
+            {header}
+        >
+            {@render content()}
+        </Drawer>
+
+        <Drawer
+            isOpen={drawerStates.left}
+            position="left"
+            handleClose={() => handleClose("left")}
+            {header}
+        >
+            {@render content()}
+        </Drawer>
+
+        <Drawer
+            isOpen={drawerStates.right}
+            position="right"
+            handleClose={() => handleClose("right")}
+            {header}
+        >
+            {@render content()}
+        </Drawer>
+
+        <Drawer
+            isOpen={drawerStates.bottom}
+            position="bottom"
+            handleClose={() => handleClose("bottom")}
+            {header}
+        >
+            {@render content()}
+        </Drawer>
+        <Button onclick={() => handleToggle("top")}>Top</Button>
+        <Button onclick={() => handleToggle("left")}>Left</Button>
+        <Button onclick={() => handleToggle("right")}>Right</Button>
+        <Button onclick={() => handleToggle("bottom")}>Bottom</Button>
+    </Window>
+
+    <Window style="height: 500px; width: 500px;">
+        <div
+            class="container"
+            style="--size: {isOpen ? 'auto' : '0'}; overflow: hidden;"
+        >
+            <Drawer
+                {isOpen}
+                variant="permanent"
+                handleClose={() => {
+                    isOpen = false
+                }}
+            >
+                {#snippet header()}
+                    <Drawer.Header
+                        handleClose={() => {
+                            isOpen = false
+                        }}
+                    >
+                        {#snippet content()}
+                            <span>header</span>
+                        {/snippet}
+                    </Drawer.Header>
+                {/snippet}
+                <span>test</span>
+            </Drawer>
+
+            <Navbar>
+                {#if !isOpen}
+                    <Button
+                        onclick={() => {
+                            isOpen = !isOpen
+                        }}
+                    >
+                        Left
+                    </Button>
+                {/if}
+
+                <span>Menu</span>
+            </Navbar>
+        </div>
+    </Window>
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: var(--size) 1fr;
+        }
+    </style>
+    ```
+  </TabItem>
+</Tabs>
