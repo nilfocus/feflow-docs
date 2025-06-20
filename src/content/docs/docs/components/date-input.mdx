@@ -7,18 +7,20 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 
 <Tabs>
   <TabItem label="Preview">
-    <DateInputPreview client:only />
+    <DateInputPreview client:load />
   </TabItem>
   <TabItem label="Usage">
     ```svelte
     <script lang="ts">
-      import { DateInput } from "@dxdns/feflow"
+      import { DateInput, themeConfig } from "@dxdns/feflow"
+
+      const theme = $derived(themeConfig())
     </script>
 
-    <DateInput />
+    <DateInput {theme} />
     <br />
     <br />
-    <DateInput type="month" />
+    <DateInput {theme} type="month" />
     ```
   </TabItem>
 </Tabs>

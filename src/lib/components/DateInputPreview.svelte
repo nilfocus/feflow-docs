@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { DateInput } from "@dxdns/feflow"
+	import { DateInput, themeConfig } from "@dxdns/feflow"
+
+	const theme = $derived(themeConfig())
 </script>
 
-<DateInput />
+<DateInput {theme} />
 <br />
 <br />
-<DateInput type="month" />
+<DateInput {theme} type="month" />
