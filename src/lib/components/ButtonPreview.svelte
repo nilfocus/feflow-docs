@@ -26,7 +26,7 @@
 		<Button disabled variant={variant as any}>{variant} disabled</Button>
 	{/each}
 
-	<div style="display:flex; align-items: baseline; gap: 1rem;">
+	<div style="display:flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
 		{#each colors as color}
 			<Button class="bg-{color} text-on-{color}">{color}</Button>
 		{/each}

@@ -1,37 +1,11 @@
 <script lang="ts">
-	import { Card, HoverFollower } from "@dxdns/feflow"
+	import { Card } from "@dxdns/feflow"
 </script>
 
 <Card>
-	<h2>test1</h2>
+	<h2>normal</h2>
 </Card>
 
 <Card glowOnHover>
 	<h2>glow on hover</h2>
 </Card>
-
-<HoverFollower>
-	<Card>
-		<div>
-			<h4>test</h4>
-			<p>test</p>
-		</div>
-	</Card>
-	<Card>
-		<div>
-			<h4>test</h4>
-			<p>test</p>
-		</div>
-	</Card>
-</HoverFollower>
-
-<HoverFollower style="gap: 3rem;" orientation="horizontal" bgColor="green">
-	{#each Array.from(Array(5)) as _, i}
-		<Card variant={i % 2 ? "contained" : "outlined"}>
-			<div>
-				<h4>test {i}</h4>
-				<p>test {i}</p>
-			</div>
-		</Card>
-	{/each}
-</HoverFollower>
