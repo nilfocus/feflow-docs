@@ -23,26 +23,20 @@
 	}
 </script>
 
-{#snippet header()}
-	<Drawer.Header>
-		{#snippet content()}
-			<span>logo</span>
-		{/snippet}
+{#snippet header(handleClose?: () => void)}
+	<Drawer.Header {handleClose}>
+		<span>logo</span>
 	</Drawer.Header>
 {/snippet}
 
 {#snippet content()}
-	<a href="/">label</a>
+	<Drawer.Content>
+		<a href="/">label</a>
+	</Drawer.Content>
 {/snippet}
 
-<Drawer
-	isOpen={isOpenFixed}
-	position="right"
-	handleClose={() => {
-		isOpenFixed = false
-	}}
-	{header}
->
+<Drawer isOpen={isOpenFixed} position="right">
+	{@render header()}
 	{@render content()}
 </Drawer>
 <Button
@@ -54,44 +48,60 @@
 </Button>
 
 <Window style="height: 500px; width: 500px; position: relative;">
-	<Drawer
+	<Drawer.Overlay
 		isOpen={drawerStates.top}
-		position="top"
+		onclick={() => {
+			handleClose("top")
+		}}
 		style="position: absolute;"
-		handleClose={() => handleClose("top")}
-		{header}
-	>
+	/>
+	<Drawer isOpen={drawerStates.top} position="top" style="position: absolute;">
+		{@render header(() => {
+			handleClose("top")
+		})}
 		{@render content()}
 	</Drawer>
 
+	<Drawer.Overlay
+		isOpen={drawerStates.left}
+		onclick={() => {
+			handleClose("left")
+		}}
+	/>
 	<Drawer
 		isOpen={drawerStates.left}
 		position="left"
-		handleClose={() => handleClose("left")}
-		{header}
+		style="position: absolute;"
 	>
+		{@render header(() => {
+			handleClose("left")
+		})}
 		{@render content()}
 	</Drawer>
 
 	<Drawer
 		isOpen={drawerStates.right}
 		position="right"
-		handleClose={() => handleClose("right")}
-		{header}
+		style="position: absolute;"
 	>
+		{@render header(() => {
+			handleClose("right")
+		})}
 		{@render content()}
 	</Drawer>
 
 	<Drawer
 		isOpen={drawerStates.bottom}
 		position="bottom"
-		handleClose={() => handleClose("bottom")}
-		{header}
+		style="position: absolute;"
 	>
+		{@render header(() => {
+			handleClose("bottom")
+		})}
 		{@render content()}
 	</Drawer>
-	<Button onclick={() => handleToggle("top")}>Top</Button>
-	<Button onclick={() => handleToggle("left")}>Left</Button>
+	<Button onclick={() => handleToggle("top")}>Top With Overlay</Button>
+	<Button onclick={() => handleToggle("left")}>Left With Overlay</Button>
 	<Button onclick={() => handleToggle("right")}>Right</Button>
 	<Button onclick={() => handleToggle("bottom")}>Bottom</Button>
 </Window>
@@ -101,25 +111,17 @@
 		class="container"
 		style="--size: {isOpen ? 'auto' : '0'}; overflow: hidden;"
 	>
-		<Drawer
-			{isOpen}
-			variant="permanent"
-			handleClose={() => {
-				isOpen = false
-			}}
-		>
-			{#snippet header()}
-				<Drawer.Header
-					handleClose={() => {
-						isOpen = false
-					}}
-				>
-					{#snippet content()}
-						<span>header</span>
-					{/snippet}
-				</Drawer.Header>
-			{/snippet}
-			<span>test</span>
+		<Drawer {isOpen} variant="permanent">
+			<Drawer.Header
+				handleClose={() => {
+					isOpen = false
+				}}
+			>
+				<span>header</span>
+			</Drawer.Header>
+			<Drawer.Content>
+				<span>test</span>
+			</Drawer.Content>
 		</Drawer>
 
 		<Navbar>

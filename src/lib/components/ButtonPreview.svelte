@@ -10,7 +10,6 @@
     display: flex; 
     flex-direction: column; 
     gap: 1rem;
-    width: fit-content;
     align-items: center;
     padding: 1rem;
 "

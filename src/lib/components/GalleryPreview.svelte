@@ -33,8 +33,7 @@
 >
 	<Modal.Content
 		style="
-		text-align: center; 
-		overflow: hidden; 
+		text-align: center;
 		padding: 0;
 		"
 	>
