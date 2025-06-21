@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Drawer, Navbar, Window } from "@dxdns/feflow"
+	import { Button, Drawer, Window } from "@dxdns/feflow"
 
 	type PositionType = "top" | "left" | "right" | "bottom"
 
@@ -35,6 +35,12 @@
 	</Drawer.Content>
 {/snippet}
 
+<Drawer.Overlay
+	isOpen={isOpenFixed}
+	onclick={() => {
+		isOpenFixed = false
+	}}
+/>
 <Drawer isOpen={isOpenFixed} position="right">
 	{@render header()}
 	{@render content()}
@@ -47,7 +53,7 @@
 	Right Fixed
 </Button>
 
-<Window style="height: 500px; width: 500px; position: relative;">
+<Window style="position: relative; min-height: 500px;">
 	<Drawer.Overlay
 		isOpen={drawerStates.top}
 		onclick={() => {
@@ -67,6 +73,7 @@
 		onclick={() => {
 			handleClose("left")
 		}}
+		style="position: absolute;"
 	/>
 	<Drawer
 		isOpen={drawerStates.left}
@@ -100,49 +107,10 @@
 		})}
 		{@render content()}
 	</Drawer>
-	<Button onclick={() => handleToggle("top")}>Top With Overlay</Button>
-	<Button onclick={() => handleToggle("left")}>Left With Overlay</Button>
-	<Button onclick={() => handleToggle("right")}>Right</Button>
-	<Button onclick={() => handleToggle("bottom")}>Bottom</Button>
-</Window>
-
-<Window style="height: 500px; width: 500px;">
-	<div
-		class="container"
-		style="--size: {isOpen ? 'auto' : '0'}; overflow: hidden;"
-	>
-		<Drawer {isOpen} variant="permanent">
-			<Drawer.Header
-				handleClose={() => {
-					isOpen = false
-				}}
-			>
-				<span>header</span>
-			</Drawer.Header>
-			<Drawer.Content>
-				<span>test</span>
-			</Drawer.Content>
-		</Drawer>
-
-		<Navbar>
-			{#if !isOpen}
-				<Button
-					onclick={() => {
-						isOpen = !isOpen
-					}}
-				>
-					Left
-				</Button>
-			{/if}
-
-			<span>Menu</span>
-		</Navbar>
+	<div style="display:flex; gap:1rem; flex-wrap: wrap;">
+		<Button onclick={() => handleToggle("top")}>Top With Overlay</Button>
+		<Button onclick={() => handleToggle("left")}>Left With Overlay</Button>
+		<Button onclick={() => handleToggle("right")}>Right</Button>
+		<Button onclick={() => handleToggle("bottom")}>Bottom</Button>
 	</div>
 </Window>
-
-<style>
-	.container {
-		display: grid;
-		grid-template-columns: var(--size) 1fr;
-	}
-</style>
