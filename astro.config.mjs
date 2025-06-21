@@ -13,7 +13,7 @@ export default defineConfig({
         PageFrame: "./src/lib/layouts/RootLayout.astro",
       },
       customCss: ["./src/styles/custom.css"],
-      favicon: "./src/assets/favicon.png",
+      favicon: "/favicon.png",
       logo: {
         src: "./src/assets/logo.png",
         replacesTitle: true,
