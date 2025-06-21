@@ -2,16 +2,7 @@
 	import { Button, Card, Carousel } from "@dxdns/feflow"
 </script>
 
-<Carousel
-	auto
-	id="carousel-1"
-	style="
-	width:600px;
-	margin: 3rem auto; 
-	background: blue; 
-	padding: 0 3.5rem;
-	"
->
+<Carousel id="carousel-1">
 	<Carousel.Item>
 		<img
 			style="object-fit:contain;width:100%;height:100%;"
@@ -49,10 +40,8 @@
 <Carousel
 	id="carousel-2"
 	style="
-		width: 600px;
-		margin: 3rem auto;
-		background: green;
-		padding: 3rem;
+	background: green;
+	padding: 3rem;
 	"
 >
 	{#each Array.from(Array(5)) as _, index}
@@ -92,8 +81,6 @@
 <Carousel
 	id="carousel-3"
 	style="
-		width: 600px;
-		margin: 3rem auto;
 		background: red;
 		padding: 3rem;
 	"
