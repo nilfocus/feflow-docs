@@ -2,6 +2,8 @@
 title: Installation
 description: How to install and set up feflow in your project
 ---
+import { Button } from "@dxdns/feflow"
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 
 #### Requirements
 
@@ -34,13 +36,21 @@ This should be done at the layout level to ensure global access.
 ```
 
 #### 3 - Enjoy!
+<Tabs>
+	<TabItem label="Usage">
+        ```svelte
+        <script lang="ts">
+            import { Button } from "@dxdns/feflow"
+        </script>
 
-```svelte
-<script lang="ts">
-    import { Button } from "@dxdns/feflow"
-</script>
-
-<Button>
-    Click me
-</Button>
-```
+        <Button>
+            Click me
+        </Button>
+        ```
+    </TabItem>
+    <TabItem label="Preview">
+        <Button>
+            Click me
+        </Button>
+    </TabItem>
+</Tabs>
