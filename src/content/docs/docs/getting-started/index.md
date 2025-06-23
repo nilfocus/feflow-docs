@@ -23,7 +23,7 @@ This should be done at the layout level to ensure global access.
 
 > Recommended: Place this in `src/routes/+layout.svelte` (SvelteKit root layout)
 
-```
+```svelte
 <script lang="ts">
     import { FeflowProvider } from "@dxdns/feflow"
 </script>
@@ -35,7 +35,7 @@ This should be done at the layout level to ensure global access.
 
 #### 3 - Enjoy!
 
-```
+```svelte
 <script lang="ts">
     import { Button } from "@dxdns/feflow"
 </script>
