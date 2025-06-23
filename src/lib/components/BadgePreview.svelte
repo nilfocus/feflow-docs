@@ -9,8 +9,8 @@
 <div
 	style="
     display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    flex-wrap: wrap;
+    align-items: flex-end;
     gap: 1rem;
     "
 >

@@ -8,9 +8,9 @@
 <div
 	style="
     display: flex; 
-    flex-direction: column; 
+    flex-wrap: wrap;
     gap: 1rem;
-    align-items: center;
+    align-items: flex-end;
     padding: 1rem;
 "
 >
