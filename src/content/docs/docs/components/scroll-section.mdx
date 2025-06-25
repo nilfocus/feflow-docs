@@ -1,0 +1,49 @@
+---
+title: Scroll Section
+description: A layout component for organizing content into scrollable sections, often used for navigation or storytelling.
+---
+import ScrollSectionPreview from "@/components/ScrollSectionPreview.svelte"
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+<Tabs>
+  <TabItem label="Preview">
+    <ScrollSectionPreview client:load />
+  </TabItem>
+  <TabItem label="Usage">
+    ```svelte
+    <script lang="ts">
+      import { getSections, ScrollSection, Window } from "@dxdns/feflow"
+
+      const sections = $derived(getSections())
+      const sectionsData = Array.from({ length: 25 }, (_, index) => ({
+        reference: `Section ${index + 1}`
+      }))
+    </script>
+
+    <Window style="max-height: 300px; overflow-y: scroll;">
+      <ScrollSection
+        data={sections}
+        style="
+            position: sticky; 
+            margin: 0; 
+            top: -16px; 
+            z-index: 1;
+            "
+      >
+        {#each sectionsData as { reference }}
+          <ScrollSection.Content
+            id={reference}
+            style="
+                    height: 100vh; 
+                    border: 1px solid red; 
+                    padding: 1rem;
+                    "
+          >
+            <span>{reference}</span>
+          </ScrollSection.Content>
+        {/each}
+      </ScrollSection>
+    </Window>
+    ```
+  </TabItem>
+</Tabs>
