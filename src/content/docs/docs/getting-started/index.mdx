@@ -4,6 +4,7 @@ description: How to install and set up feflow in your project
 ---
 import { Button } from "@dxdns/feflow"
 import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Steps } from '@astrojs/starlight/components';
 
 #### Requirements
 
@@ -12,45 +13,55 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 | **SvelteKit** | 2.x                       |
 | **Svelte**    | 5.x                       |
 
-#### 1 - Install `@dxdns/feflow`
+<Steps>
+    <ol>
+        <li>
+            #### Install `@dxdns/feflow`
 
-```bash
-npm install @dxdns/feflow
-```
+            ```bash
+            npm install @dxdns/feflow
+            ```
+        </li>
+        
+        <li>
+            #### Setup provider
 
-#### 2 - Setup provider
+            Wrap your application with the `FeflowProvider` to enable all Feflow components.  
+            This should be done at the layout level to ensure global access.
 
-Wrap your application with the `FeflowProvider` to enable all Feflow components.  
-This should be done at the layout level to ensure global access.
+            > Recommended: Place this in `src/routes/+layout.svelte` (SvelteKit root layout)
 
-> Recommended: Place this in `src/routes/+layout.svelte` (SvelteKit root layout)
+            ```svelte
+            <script lang="ts">
+                import { FeflowProvider } from "@dxdns/feflow"
+            </script>
 
-```svelte
-<script lang="ts">
-    import { FeflowProvider } from "@dxdns/feflow"
-</script>
+            <FeflowProvider>
+                {@render children()}
+            </FeflowProvider>
+            ```
+        </li>
 
-<FeflowProvider>
-    {@render children()}
-</FeflowProvider>
-```
+        <li>
+            #### Enjoy!
+            <Tabs>
+                <TabItem label="Usage">
+                    ```svelte
+                    <script lang="ts">
+                        import { Button } from "@dxdns/feflow"
+                    </script>
 
-#### 3 - Enjoy!
-<Tabs>
-	<TabItem label="Usage">
-        ```svelte
-        <script lang="ts">
-            import { Button } from "@dxdns/feflow"
-        </script>
-
-        <Button>
-            Click me
-        </Button>
-        ```
-    </TabItem>
-    <TabItem label="Preview">
-        <Button>
-            Click me
-        </Button>
-    </TabItem>
-</Tabs>
+                    <Button>
+                        Click me
+                    </Button>
+                    ```
+                </TabItem>
+                <TabItem label="Preview">
+                    <Button>
+                        Click me
+                    </Button>
+                </TabItem>
+            </Tabs>
+        </li>
+    </ol>
+</Steps>
