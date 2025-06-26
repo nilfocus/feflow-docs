@@ -1,6 +1,13 @@
 <script lang="ts">
-	import { getSections, ScrollSection, Window } from "@dxdns/feflow"
+	import {
+		Card,
+		getSections,
+		ScrollSection,
+		themeConfig,
+		Window
+	} from "@dxdns/feflow"
 
+	const { colors } = $derived(themeConfig())
 	const sections = $derived(getSections())
 	const sectionsData = Array.from({ length: 25 }, (_, index) => ({
 		reference: `Section ${index + 1}`
@@ -15,19 +22,25 @@
         margin: 0; 
         top: -16px; 
         z-index: 1;
+		border-radius: 15px;
         "
 	>
-		{#each sectionsData as { reference }}
-			<ScrollSection.Content
-				id={reference}
-				style="
-                height: 100vh; 
-                border: 1px solid red; 
-                padding: 1rem;
-                "
-			>
-				<span>{reference}</span>
-			</ScrollSection.Content>
+		{#each sectionsData as { reference }, i}
+			<Card>
+				<ScrollSection.Content
+					id={reference}
+					style="
+					height: 100vh; 
+					padding: 1rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background: {i % 2 ? colors.colorInfo : colors.colorWarning};
+					"
+				>
+					<h2>{reference}</h2>
+				</ScrollSection.Content>
+			</Card>
 		{/each}
 	</ScrollSection>
 </Window>
