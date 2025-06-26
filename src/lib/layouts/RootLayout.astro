@@ -1,14 +1,17 @@
 ---
-// src/components/PageFrame.astro
 import { FeflowProvider } from "@dxdns/feflow"
-import MobileMenuToggle from 'virtual:starlight/components/MobileMenuToggle'
+import MobileMenuToggle from '@astrojs/starlight/components/MobileMenuToggle.astro'
+import Header from '@astrojs/starlight/components/Header.astro'
+// import Header from '../components/Header.astro'
 
 const { hasSidebar } = Astro.locals.starlightRoute
 ---
 
 <FeflowProvider client:load>
   <div class="page sl-flex">
-    <header class="header"><slot name="header" /></header>
+    <header class="header">
+      <Header />
+    </header>
     {
       hasSidebar && (
         <nav class="sidebar print:hidden" aria-label={Astro.locals.t('sidebarNav.accessibleLabel')}>
