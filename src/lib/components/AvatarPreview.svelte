@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Avatar } from "@dxdns/feflow"
+	import { Avatar, Status, themeConfig } from "@dxdns/feflow"
+
+	const theme = $derived(themeConfig())
 </script>
 
 <Avatar textFallback="test" />
@@ -9,9 +11,21 @@
 	textFallback="test"
 />
 <br />
-<Avatar
-	src="https://avatars.githubusercontent.com/u/26321303?v=4"
-	textFallback="test"
-	width="150px"
-	height="150px"
-/>
+<div style="position: relative; display: inline-block;">
+	<Avatar
+		src="https://avatars.githubusercontent.com/u/26321303?v=4"
+		textFallback="test"
+		width="150px"
+		height="150px"
+	/>
+	<Status
+		color="green"
+		size="24px"
+		style="
+		position: absolute; 
+		top: 0; 
+		right: 5px; 
+		border: 2px solid {theme.colors.colorBg};
+		"
+	/>
+</div>
