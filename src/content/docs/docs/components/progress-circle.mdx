@@ -12,20 +12,17 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
   <TabItem label="Usage">
     ```svelte
     <script lang="ts">
-      import { ProgressCircle } from "@dxdns/feflow"
+      import { ProgressCircle, themeConfig } from "@dxdns/feflow"
+
+      const { colors } = $derived(themeConfig())
 
       function getColor(value: number) {
-        if (value < 30) return "red"
-        if (value < 70) return "orange"
-        return "green"
+        if (value < 30) return colors.colorError
+        if (value < 70) return colors.colorWarning
+        return colors.colorSuccess
       }
 
-      const data = [
-        { value: 20, color: getColor(20) },
-        { value: 45, color: getColor(45) },
-        { value: 75, color: getColor(75) },
-        { value: 90, color: getColor(90) }
-      ]
+      const data = [20, 45, 75, 90].map((v) => ({ value: v, color: getColor(v) }))
     </script>
 
     <div
