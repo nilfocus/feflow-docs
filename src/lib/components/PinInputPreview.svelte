@@ -3,6 +3,7 @@
 	import { onMount } from "svelte"
 
 	let isOpen = $state(false)
+	let isLoading = $state(false)
 
 	function handleOpen() {
 		isOpen = !isOpen
@@ -43,7 +44,7 @@
             "
 		>
 			{#each Array.from(Array(4)) as _, i}
-				<PinInput isLoading={i === 0} />
+				<PinInput autoFocus={i === 0} {isLoading} value="" />
 			{/each}
 		</div>
 	</Modal.Content>
@@ -55,7 +56,19 @@
 		>
 			Cancel
 		</Button>
-		<Button onclick={handleClose}>Save</Button>
+		<Button
+			{isLoading}
+			disabled={isLoading}
+			onclick={() => {
+				isLoading = true
+				setTimeout(() => {
+					isLoading = false
+					handleClose()
+				}, 5000)
+			}}
+		>
+			Save
+		</Button>
 	</Modal.Actions>
 </Modal>
 

@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { Button, Card, Carousel } from "@dxdns/feflow"
+	import { Button, Card, Carousel, RadioButton } from "@dxdns/feflow"
+
+	let currentIndex = $state(0)
 </script>
 
-<Carousel id="carousel-1">
+<Carousel id="carousel-1" auto>
 	<Carousel.Item>
 		<img
 			style="object-fit:contain;width:100%;height:100%;"
@@ -37,16 +39,10 @@
 	{/snippet}
 </Carousel>
 
-<Carousel
-	id="carousel-2"
-	style="
-	background: green;
-	padding: 3rem;
-	"
->
-	{#each Array.from(Array(5)) as _, index}
-		<Carousel.Item href="https://dxdns.dev" target="_blank">
-			<Card>
+<Card>
+	<Carousel id="carousel-2" style="padding: 3rem 0;">
+		{#each Array.from(Array(5)) as _, index}
+			<Carousel.Item href="https://dxdns.dev" target="_blank">
 				<h1 style="text-align: center;">{index}</h1>
 				<br />
 				<p>
@@ -55,13 +51,12 @@
 					debitis, harum velit earum quam aperiam reiciendis sit consectetur ex?
 					Iste.
 				</p>
-			</Card>
-		</Carousel.Item>
-	{/each}
+			</Carousel.Item>
+		{/each}
 
-	{#snippet actions({ prev, next })}
-		<div
-			style="
+		{#snippet actions({ prev, next })}
+			<div
+				style="
 				display: flex;
 				justify-content: space-between;
 				position: absolute;
@@ -71,35 +66,32 @@
 				padding: 0 1rem;
                 align-items: baseline;
 			"
-		>
-			<Button onclick={prev}>prev</Button>
-			<Button onclick={next}>next</Button>
-		</div>
-	{/snippet}
-</Carousel>
+			>
+				<Button onclick={prev}>prev</Button>
+				<Button onclick={next}>next</Button>
+			</div>
+		{/snippet}
+	</Carousel>
+</Card>
 
-<Carousel
-	id="carousel-3"
-	style="
-		background: red;
-		padding: 3rem;
-	"
->
-	{#each Array.from(Array(5)) as _, index}
-		<Carousel.Item>
-			<h1 style="text-align: center;">{index}</h1>
-			<br />
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-				soluta vero est minima, non illo ipsam molestiae omnis laborum, debitis,
-				harum velit earum quam aperiam reiciendis sit consectetur ex? Iste.
-			</p>
-		</Carousel.Item>
-	{/each}
+<Card>
+	<Carousel id="carousel-3" style="padding: 3rem 0;">
+		{#each Array.from(Array(5)) as _, index}
+			<Carousel.Item>
+				<h1 style="text-align: center;">{index}</h1>
+				<br />
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+					soluta vero est minima, non illo ipsam molestiae omnis laborum,
+					debitis, harum velit earum quam aperiam reiciendis sit consectetur ex?
+					Iste.
+				</p>
+			</Carousel.Item>
+		{/each}
 
-	{#snippet actions({ prev, next })}
-		<div
-			style="
+		{#snippet actions({ prev, next })}
+			<div
+				style="
 				display: flex;
 				justify-content: flex-end;
 				position: absolute;
@@ -110,12 +102,57 @@
 				gap: 1rem;
                 align-items: baseline;
 			"
-		>
-			<Button roundedFull onclick={prev}>prev</Button>
-			<Button roundedFull onclick={next}>next</Button>
-		</div>
-	{/snippet}
-</Carousel>
+			>
+				<Button roundedFull onclick={prev}>prev</Button>
+				<Button roundedFull onclick={next}>next</Button>
+			</div>
+		{/snippet}
+	</Carousel>
+</Card>
+
+<Card>
+	<Carousel id="carousel-4" style="padding: 3rem 0;">
+		{#each Array.from(Array(5)) as _, index}
+			<Carousel.Item>
+				<h1 style="text-align: center;">{index}</h1>
+				<br />
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+					soluta vero est minima, non illo ipsam molestiae omnis laborum,
+					debitis, harum velit earum quam aperiam reiciendis sit consectetur ex?
+					Iste.
+				</p>
+			</Carousel.Item>
+		{/each}
+
+		{#snippet actions({ goTo })}
+			<div
+				style="
+				display: flex;
+				justify-content: center;
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 5px;
+				padding: 0 1rem;
+				gap: 1rem;
+                align-items: baseline;
+			"
+			>
+				{#each Array.from(Array(5)) as _, index}
+					<RadioButton
+						size="xs"
+						checked={currentIndex === index}
+						onchange={() => {
+							currentIndex = index
+							goTo(currentIndex)
+						}}
+					/>
+				{/each}
+			</div>
+		{/snippet}
+	</Carousel>
+</Card>
 
 <style>
 	img {

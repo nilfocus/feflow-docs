@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { Card } from "@dxdns/feflow"
+
+	const variants = ["contained", "outlined"]
 </script>
 
-<Card>
-	<h2>normal</h2>
-</Card>
+{#each variants as variant}
+	<Card variant={variant as any}>
+		<h2>{variant}</h2>
+	</Card>
+{/each}
 
 <Card glowOnHover>
 	<h2>glow on hover</h2>
