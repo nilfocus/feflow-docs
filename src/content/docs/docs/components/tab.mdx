@@ -59,7 +59,10 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
     <div style="max-width:800px; margin: 3rem auto;">
       <Card>
         <Tab id="tab1">
-          <Tab.List scrollable={false} lineStyle={{ color: "red" }}>
+          <Tab.List
+            scrollable={false}
+            lineStyle={{ color: theme.colors.colorError }}
+          >
             {#each tabs.slice(0, 2) as tab}
               <Button
                 id={tab.id}
@@ -85,7 +88,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
       </Card>
 
       <Tab id="tab2" style="background: transparent;">
-        <Tab.List hoverFollower>
+        <Tab.List hoverFollower={{ bgColor: theme.colors.colorSuccess }}>
           {#each tabs as tab}
             <Button
               id={tab.id}
@@ -109,55 +112,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
         {/each}
       </Tab>
 
-      <Tab id="tab3">
-        <Tab.List>
-          {#each tabs as tab}
-            <Button
-              id={tab.id}
-              title={tab.label}
-              variant="text"
-              onclick={() => {
-                handle("tab3", tab.id)
-              }}
-            >
-              {#if tab.icon}
-                {@render icon(tab.icon)}
-              {/if}
-              {tab.label}
-            </Button>
-          {/each}
-        </Tab.List>
-
-        {#each tabs as tab}
-          {@render content(activeTab.tab3 === tab.id, tab.content)}
-        {/each}
-      </Tab>
-
-      <Tab id="tab4" orientation="vertical">
-        <Tab.List orientation="vertical">
-          {#each tabs.slice(0, 3) as tab}
-            <Button
-              id={tab.id}
-              title={tab.label}
-              variant="text"
-              onclick={() => {
-                handle("tab4", tab.id)
-              }}
-            >
-              {#if tab.icon}
-                {@render icon(tab.icon)}
-              {/if}
-              {tab.label}
-            </Button>
-          {/each}
-        </Tab.List>
-        <Separator orientation="vertical" height="auto" />
-        {#each tabs.slice(0, 3) as tab}
-          {@render content(activeTab.tab4 === tab.id, tab.content)}
-        {/each}
-      </Tab>
-
-      <Tab id="tab5" orientation="vertical">
+      <Tab id="tab3" orientation="vertical">
         <Tab.List
           class="border-0"
           orientation="vertical"
