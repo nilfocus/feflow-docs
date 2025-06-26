@@ -2,14 +2,14 @@
 	import { BottomSheet, Button } from "@dxdns/feflow"
 
 	let isOpen = $state(false)
+
+	function handleClose() {
+		isOpen = false
+	}
 </script>
 
-<BottomSheet
-	{isOpen}
-	handleClose={() => {
-		isOpen = false
-	}}
->
+<BottomSheet.Overlay {isOpen} onclick={handleClose} style="z-index: 998;" />
+<BottomSheet {isOpen} {handleClose}>
 	<h1>test</h1>
 </BottomSheet>
 

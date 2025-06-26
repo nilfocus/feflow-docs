@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { Button, Tab, Card } from "@dxdns/feflow"
+	import { Button, themeConfig, Separator, Tab, Card } from "@dxdns/feflow"
 	import { fade, fly } from "svelte/transition"
+
+	const theme = $derived(themeConfig())
 
 	let activeTab = $state({
 		tab1: "1",
@@ -41,10 +43,10 @@
 	<span style="font-size: 20px;">{@html s}</span>
 {/snippet}
 
-<div style="max-width:500px; margin: 3rem auto;">
+<div style="max-width:800px; margin: 3rem auto;">
 	<Card>
 		<Tab id="tab1">
-			<Tab.List scrollable={false} lineStyle={{ color: "green" }}>
+			<Tab.List scrollable={false} lineStyle={{ color: "red" }}>
 				{#each tabs.slice(0, 2) as tab}
 					<Button
 						id={tab.id}
@@ -91,6 +93,82 @@
 
 		{#each tabs as tab}
 			{@render content(activeTab.tab2 === tab.id, tab.content)}
+		{/each}
+	</Tab>
+
+	<Tab id="tab3">
+		<Tab.List>
+			{#each tabs as tab}
+				<Button
+					id={tab.id}
+					title={tab.label}
+					variant="text"
+					onclick={() => {
+						handle("tab3", tab.id)
+					}}
+				>
+					{#if tab.icon}
+						{@render icon(tab.icon)}
+					{/if}
+					{tab.label}
+				</Button>
+			{/each}
+		</Tab.List>
+
+		{#each tabs as tab}
+			{@render content(activeTab.tab3 === tab.id, tab.content)}
+		{/each}
+	</Tab>
+
+	<Tab id="tab4" orientation="vertical">
+		<Tab.List orientation="vertical">
+			{#each tabs.slice(0, 3) as tab}
+				<Button
+					id={tab.id}
+					title={tab.label}
+					variant="text"
+					onclick={() => {
+						handle("tab4", tab.id)
+					}}
+				>
+					{#if tab.icon}
+						{@render icon(tab.icon)}
+					{/if}
+					{tab.label}
+				</Button>
+			{/each}
+		</Tab.List>
+		<Separator orientation="vertical" height="auto" />
+		{#each tabs.slice(0, 3) as tab}
+			{@render content(activeTab.tab4 === tab.id, tab.content)}
+		{/each}
+	</Tab>
+
+	<Tab id="tab5" orientation="vertical">
+		<Tab.List
+			class="border-0"
+			orientation="vertical"
+			hoverFollower={{ bgColor: theme.colors.colorTextMuted }}
+		>
+			{#each tabs.slice(0, 5) as tab}
+				<Button
+					id={tab.id}
+					title={tab.label}
+					variant="text"
+					onclick={() => {
+						handle("tab5", tab.id)
+					}}
+				>
+					{#if tab.icon}
+						{@render icon(tab.icon)}
+					{/if}
+					{tab.label}
+				</Button>
+			{/each}
+		</Tab.List>
+		<Separator orientation="vertical" height="auto" />
+		{#each tabs.slice(0, 5) as tab}
+			{@render content(activeTab.tab5 === tab.id, tab.content)}
 		{/each}
 	</Tab>
 </div>
