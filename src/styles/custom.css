@@ -7,3 +7,7 @@
 .main-pane {
     isolation: unset;
 }
+
+svg {
+    margin: 0;
+}
