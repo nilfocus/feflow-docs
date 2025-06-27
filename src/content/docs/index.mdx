@@ -15,23 +15,65 @@ hero:
       link: https://github.com/dxdns/feflow
       icon: external
       variant: minimal
+      attrs:
+        target: _blank
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components"
+import { CardGrid, LinkButton } from "@astrojs/starlight/components"
+import { Card, RangeInput, PinInput } from "@dxdns/feflow"
+import MenuPreview from "@/components/MenuPreview.svelte"
+import TextFieldPreview from "@/components/TextFieldPreview.svelte"
+import CarouselPreview from "@/components/CarouselPreview.svelte"
+import ButtonPreview from "@/components/ButtonPreview.svelte"
+import About from "@/components/About.astro"
 
-{/* ## Next steps */}
+<CardGrid stagger>
+	<Card>
+   <div style="text-align: center;">
+    <h3>Range Input</h3>
+    <br />
+    <RangeInput />
+    </div>
+	</Card>
+	<Card>
+  <div style="text-align: center;">
+    <h3>Pin Input</h3>
+    <br />
+    {[...Array(4)].map(() => (
+      <PinInput value="" />
+    ))}
+    </div>
+	</Card>
+	<Card>
+    <div style="text-align: center;">
+      <h3>Button</h3>
+      <br />
+      <ButtonPreview />
+    </div>
+	</Card>
 
-{/* <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+  <Card style="max-height: 290px;">
+    <div style="text-align: center;">
+      <h3>Text Field</h3>
+      <br />
+      <TextFieldPreview />
+    </div>
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid> */}
+</CardGrid>
+
+<div style="text-align: center;">
+  <LinkButton 
+    href="/docs/getting-started/templates" 
+    variant="secondary" 
+    icon="right-arrow"
+  >
+    Explore Templates
+  </LinkButton>
+</div>
+
+<About>
+  feflow is a lightweight UI component library built for simplicity and speed.
+  Design clean, fast, and accessible interfaces with zero dependencies — powered by Svelte and focused on performance.
+
+  [Learn about feflow](/docs)
+</About>
