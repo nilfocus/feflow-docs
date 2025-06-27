@@ -29,7 +29,24 @@ export default defineConfig({
       sidebar: [
         {
           label: "Getting Started",
-          autogenerate: { directory: "docs/getting-started" },
+          items: [
+            {
+              label: "Introduction",
+              slug: "docs"
+            },
+            {
+              label: "Installation",
+              slug: "docs/getting-started"
+            },
+            {
+              label: "Theming",
+              slug: "docs/getting-started/theming"
+            },
+            {
+              label: "CLI",
+              slug: "docs/getting-started/cli"
+            },
+          ]
         },
         {
           label: "Components",
